@@ -1,14 +1,82 @@
-# bond-calendar-notify
-### 新债打新每天九点定时微信推送
 
-* 利用GitHub Action每天定时推送最新的新债
-* Server酱提供从服务器到微信端的推送
-  
-### 1.GitHub Actions
-是一项持续集成和部署服务，可用于自动化构建、测试和部署你的代码。 配置 GitHub Actions 主要包括以下步骤： 在你的代码仓库中创建 .github/workflows 目录。 在 .github/workflows 目录中创建一个 YAML 格式的配置文件，命名为 [workflow-name].yml，其中 [workflow-name] 是你自定义的工作流名称。
 
-编辑工作流配置文件，使用 YAML 语法描述工作流程的结构和步骤。配置文件中可以包含触发条件、环境变量、任务步骤、依赖项等。 保存配置文件后，GitHub 将自动检测并运行你的工作流程。
 
-完成配置后，将配置文件推送到代码仓库中的 .github/workflows 目录中，GitHub 将会自动运行你的工作流程。
 
-【Github Actions生成 secrets参考链接】： https://blog.csdn.net/weixin_45178716/article/details/106416925
+
+# bond-calendar-notify 📱 新债打新微信定时提醒工具
+
+✨ 无需本地部署，依托 GitHub Actions 实现每日 9 点自动抓取新债打新信息，通过 Server 酱推送至微信，让你不错过每一次打新机会 ✨
+
+
+### 🎯 核心功能
+
+- 定时自动推送：每日早 9 点触发任务，自动抓取当日最新新债打新数据，无需手动查询
+
+- 微信直达通知：通过 Server 酱快速打通服务器与微信，消息实时推送，随时查看
+
+- 零成本部署：基于 GitHub Actions 实现全自动化，无需服务器，配置简单几步搞定
+
+### 🔧 技术依赖
+
+- 自动化引擎：GitHub Actions（持续集成/部署服务，实现定时任务触发与执行）
+
+- 消息推送：Server 酱（打通服务器与微信的推送通道，实现消息直达）
+
+### 🚀 快速配置指南（GitHub Actions 篇）
+
+GitHub Actions 是 GitHub 内置的自动化服务，可实现代码构建、测试、定时任务等自动化操作，本项目通过它实现每日定时抓取与推送，配置步骤如下：
+
+1. 创建工作流目录与文件
+
+在你的仓库根目录下，依次创建目录和文件：
+
+目录结构
+```
+.github/
+  workflows/
+    bond-notify.yml  # 工作流配置文件（文件名可自定义，后缀为 .yml）
+```
+
+2. 编写工作流配置
+
+编辑 `bond-notify.yml` 文件，使用 YAML 语法描述工作流程，核心包含：
+
+- 触发条件：设置每日 9 点定时触发（支持 cron 表达式）
+
+- 环境变量：配置 Server 酱密钥等敏感信息（通过 GitHub Secrets 管理）
+
+- 任务步骤：安装依赖、执行抓取脚本、调用 Server 酱推送消息
+
+配置完成后提交至仓库，GitHub 将自动检测并运行工作流。
+
+3. 敏感信息配置（Secrets）
+
+为保护 Server 酱密钥等敏感信息，需通过 GitHub Secrets 存储，生成与配置参考：
+
+📚 Secrets 配置详细教程： https://blog.csdn.net/weixin_45178716/article/details/106416925
+
+
+### 💡 注意事项
+
+- 工作流配置文件需严格遵循 YAML 语法，缩进错误会导致工作流运行失败
+
+- 定时时间基于 GitHub 服务器时区（UTC），需根据需求转换为本地时区（如 UTC+8 对应北京时间）
+
+- Server 酱密钥需妥善保管，仅通过 GitHub Secrets 注入，切勿直接写入配置文件
+
+### 🤝 贡献指南
+
+欢迎提交 Issue 或 Pull Request 优化项目：
+
+- 修复 Bug、优化代码逻辑
+
+- 新增功能（如多渠道推送、打新提醒过滤等）
+
+- 完善文档、简化配置步骤
+
+本项目采用 MIT 许可证开源，详情见 LICENSE 文件。
+
+💌 如有使用问题或功能建议，欢迎提交 Issue 交流！
+
+
+
