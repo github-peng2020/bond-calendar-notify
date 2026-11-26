@@ -1,7 +1,7 @@
 name: push_bonds_daily
 
 env:
-  PYTHON_VERSION: "3.8" # set this to the Python version to use
+  PYTHON_VERSION: "3.11" # Python 3.8 已在 Ubuntu 26.04 runner 上不可用
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
 on:
@@ -30,7 +30,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           
       - name: Install dependencies
-        run: pip install requests datetime
+        run: pip install requests
 
       - name: PUSH BONDS DAILY
         run: python bonds.py
