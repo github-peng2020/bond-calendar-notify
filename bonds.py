@@ -89,3 +89,4 @@ if __name__ == "__main__":
         send_to_wechat(bonds_to_send)  # 发送符合条件的债券推送
     else:
         print(f"今天没有申购的新债 ({today_date})")
+        send_to_wechat([])  # 无债时也推送一条提醒（函数内已有对应文案）
