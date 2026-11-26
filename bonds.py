@@ -2,7 +2,7 @@ import os
 import requests
 import re
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 # 获取打新债数据
 def get_bond_calendar():
@@ -47,12 +47,12 @@ def get_today_date():
     return datetime.today().strftime('%Y-%m-%d')
 
 def get_today_date_UTC():
-    # 获取当前 UTC 时间
-    now_utc = datetime.utcnow()
-    
+    # 获取当前 UTC 时间（使用 timezone-aware 写法，兼容 Python 3.12+）
+    now_utc = datetime.now(timezone.utc)
+
     # 手动加 8 小时，转换为北京时间
     beijing_time = now_utc + timedelta(hours=8)
-    
+
     return beijing_time.strftime('%Y-%m-%d') + " 00:00:00"
     
 # 发送 Server 酱通知
